@@ -1,0 +1,106 @@
+.register {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.container {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.container label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.container input {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.container .submitbutton {
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.container .submitbutton:hover {
+  background-color: #45a049;
+}
+
+.container p {
+  margin-top: 15px;
+}
+
+.link-signin {
+  color: blue;
+}
+input {
+  padding: 10px;
+}
+
+.verifyemail {
+  display: flex;
+  flex-direction: column;
+}
+
+.verifybtn {
+  background-color: blueviolet;
+  border: none;
+  padding: 12px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  height: 35px;
+  width: 90px;
+  cursor: pointer;
+}
+.verified {
+  font-size: 16px;
+margin-bottom: 10px;
+  color: #4caf50;
+  margin-top: 10px;
+}
+
+.next button {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}
