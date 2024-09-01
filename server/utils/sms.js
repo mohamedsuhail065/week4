@@ -1,8 +1,9 @@
 const userModel = require("../model/userModel");
+require('dotenv').config()
 
 const otpSms = (req, res) => {
-  const accountSid = "AC5a4324a50429db1254526e90e8419cca";
-  const authToken = "8be742f273bf1c03c23197a032e4680a";
+  const accountSid = process.env.twilio_SID;
+  const authToken = process.env.twilio_Token;;
   const client = require("twilio")(accountSid, authToken);
   const { phone } = req.body;
 
@@ -20,8 +21,8 @@ const otpSms = (req, res) => {
 
 const otpSmsVerify = async (req, res) => {
   const { phone, otp } = req.body;
-  const accountSid = "AC5a4324a50429db1254526e90e8419cca";
-  const authToken = "8be742f273bf1c03c23197a032e4680a";
+  const accountSid = process.env.twilio_SID;
+  const authToken = process.env.twilio_Token;
   const client = require("twilio")(accountSid, authToken);
 
   try {

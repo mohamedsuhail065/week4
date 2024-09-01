@@ -1,5 +1,6 @@
 const userModel = require("../model/userModel");
 const https = require("https");
+require("dotenv").config();
 
 const gst = async (request, response) => {
   const { gstin, email } = request.body;
@@ -7,12 +8,12 @@ const gst = async (request, response) => {
 
   const options = {
     method: "POST",
-    hostname: "gst-verification.p.rapidapi.com",
+    hostname: process.env.gst_Host,
     port: null,
     path: "/v3/tasks/sync/verify_with_source/ind_gst_certificate",
     headers: {
-      "x-rapidapi-key": "b1bc7f7eadmsh854f6f7e702c657p1ea4d5jsnd66d85a36251",
-      "x-rapidapi-host": "gst-verification.p.rapidapi.com",
+      "x-rapidapi-key": process.env.gst_key,
+      "x-rapidapi-host": process.env.gst_Host,
       "Content-Type": "application/json",
     },
   };

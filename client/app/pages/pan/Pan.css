@@ -40,15 +40,11 @@
 }
 
 .container input {
-  margin-bottom: 10px !important;
+  margin-bottom: 20px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
-}
-
-.container p{
-  margin-top: 0 !important;
 }
 
 .container .submitbutton {
@@ -66,6 +62,9 @@
   background-color: #45a049;
 }
 
+.container p {
+  margin-top: 15px;
+}
 
 .link-signin {
   color: blue;
@@ -75,11 +74,6 @@ input {
 }
 
 .verifyemail {
-  display: flex;
-  gap: 30px;
-}
-
-.verifymobile {
   display: flex;
   gap: 30px;
 }
@@ -96,86 +90,17 @@ input {
   width: 90px;
   cursor: pointer;
 }
-
-.verifybtn :hover {
-  background-color: darkorchid;
+.verified {
+  font-size: 16px;
+  text-align: center;
+  color: #4caf50;
+  margin-top: 10px;
 }
 
-/* Modal Overlay */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-/* Modal Content */
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 300px;
-  max-width: 100%;
-  position: relative;
-}
-
-.modal-content h2 {
-  margin-top: 0;
-}
-
-.modal-content input {
-  margin-bottom: 15px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100%;
-}
-
-.modal-content button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-.modal-content button:first-of-type {
+.next button {
   background-color: #4caf50;
-}
-
-.modal-content button:first-of-type:hover {
-  background-color: #45a049;
-}
-
-.modal-content button:last-of-type {
-  background-color: #f44336;
-}
-
-.modal-content button:last-of-type:hover {
-  background-color: #e53935;
-}
-
-/* Close Button */
-.close-modal {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
+  color: #fff;
   border: none;
-  font-size: 20px;
-  cursor: pointer;
-  color: #333;
-}
-
-.error{
-  color: #e53935;
-  margin-top: 0;
-  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
 }

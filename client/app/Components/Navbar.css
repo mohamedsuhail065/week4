@@ -1,0 +1,21 @@
+
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 10px 2%;
+  justify-content: space-between;
+  box-shadow: 0 0 10px rgb(161, 156, 156);
+  background: #fff;
+  position: sticky;
+  top: 0;
+}
+
+.navbar h1 {
+  font-size: 24px;
+  text-align: center;
+}
+
+.navbar a{
+    text-decoration: none;
+    color: black;
+}

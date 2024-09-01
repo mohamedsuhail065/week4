@@ -1,18 +1,18 @@
 const http = require("https");
 const userModel = require("../model/userModel");
-
+require("dotenv").config();
 const pincode = async (request, response) => {
   const { pin } = request.body;
   const http = require("https");
 
   const options = {
     method: "GET",
-    hostname: "indian-pincode-2024.p.rapidapi.com",
+    hostname: process.env.pin_HOST,
     port: null,
     path: `/?pincode=${pin}`,
     headers: {
-      "x-rapidapi-key": "b1bc7f7eadmsh854f6f7e702c657p1ea4d5jsnd66d85a36251",
-      "x-rapidapi-host": "indian-pincode-2024.p.rapidapi.com",
+      "x-rapidapi-key": process.env.pin_API,
+      "x-rapidapi-host": process.env.pin_HOST,
     },
   };
 
@@ -25,7 +25,7 @@ const pincode = async (request, response) => {
 
     res.on("end", function () {
       const body = Buffer.concat(chunks);
-      parsed = JSON.parse(body);
+      const parsed = JSON.parse(body);
       response.json(parsed);
     });
   });

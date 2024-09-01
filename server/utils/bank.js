@@ -1,18 +1,18 @@
 const http = require("https");
 const userModel = require("../model/userModel");
-
+require("dotenv").config();
 const verifyBankAccount = (request, response) => {
   const { accno, ifsc, email } = request.body;
 
   // POST request options
   const postOptions = {
     method: "POST",
-    hostname: "indian-bank-account-verification.p.rapidapi.com",
+    hostname: process.env.bank_postHost,
     port: null,
     path: "/v3/tasks/async/verify_with_source/validate_bank_account",
     headers: {
-      "x-rapidapi-key": "b1bc7f7eadmsh854f6f7e702c657p1ea4d5jsnd66d85a36251",
-      "x-rapidapi-host": "indian-bank-account-verification.p.rapidapi.com",
+      "x-rapidapi-key": process.env.bank_postApi,
+      "x-rapidapi-host": process.env.bank_postHost,
       "Content-Type": "application/json",
     },
   };
@@ -37,14 +37,12 @@ const verifyBankAccount = (request, response) => {
         setTimeout(() => {
           const getOptions = {
             method: "GET",
-            hostname: "indian-bank-account-verification.p.rapidapi.com",
+            hostname: process.env.bank_getHost,
             port: null,
             path: `/v3/tasks?request_id=${reqid}`,
             headers: {
-              "x-rapidapi-key":
-                "b1bc7f7eadmsh854f6f7e702c657p1ea4d5jsnd66d85a36251",
-              "x-rapidapi-host":
-                "indian-bank-account-verification.p.rapidapi.com",
+              "x-rapidapi-key": process.env.bank_getKey,
+              "x-rapidapi-host": process.env.bank_getHost,
             },
           };
 

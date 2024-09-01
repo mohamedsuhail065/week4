@@ -1,13 +1,12 @@
 const userModel = require("../model/userModel");
-
+require("dotenv").config();
 const aadhar = async (request, res) => {
   const { aadhar, email } = request.body;
   const options = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "apy-token":
-        "APY0IihDuY1vtsUotdkaD54BqDuaCovV8eLl90MC21AjBCsH52xofnGRowdErDIPjPEnBxfZnKZq",
+      "apy-token": process.env.Aadhar_token,
     },
     body: JSON.stringify({ aadhaar: String(aadhar).trim() }),
   };

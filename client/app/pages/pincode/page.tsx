@@ -67,7 +67,7 @@ const Pincode = () => {
     AXIOS.post("http://localhost:9000/otp/pindetails", data).then((res) => {
       console.log("Submitted:", res.data);
     });
-    nav.push("/pages/pincode");
+    nav.push("/user/details");
   };
 
   return (
@@ -132,7 +132,7 @@ const Pincode = () => {
 
           {isVerify && (
             <div className="next">
-              <button type="submit">Proceed</button>
+              <button type="submit">Submit</button>
             </div>
           )}
         </form>

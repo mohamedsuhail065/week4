@@ -1,10 +1,10 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import "./Aadhar.css";
+import './Pan.css'
 import AXIOS from "axios";
 
-const Aadhar = () => {
+const Pan = () => {
   const nav = useRouter();
   const [data, setData] = useState({});
   const [isVerified, setIsVerified] = useState(false);
@@ -12,8 +12,8 @@ const Aadhar = () => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
   const handleSendOtpClick = () => {
-    AXIOS.post("http://localhost:9000/otp/aadhar", data).then((res) => {
-      console.log(res.data.sts);
+    AXIOS.post("http://localhost:9000/otp/pan", data).then((res) => {
+      console.log(res.data);
       if (res.data.sts === 1) {
         setIsVerified(true);
       }
@@ -21,7 +21,7 @@ const Aadhar = () => {
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    nav.push("/pages/pan");
+    nav.push("/pages/gst");
   };
   useEffect(() => {
     const email = sessionStorage.getItem("email");
@@ -32,11 +32,11 @@ const Aadhar = () => {
   return (
     <div className="register">
       <div className="container">
-        <h1>Aadhar Verification</h1>
+        <h1>PAN Verification</h1>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="email">Aadhar Number</label>
+          <label htmlFor="pan">Pan Number</label>
           <div className="verifyemail">
-            <input type="text" name="aadhar" onChange={handleChange} />
+            <input type="text" name="pan" onChange={handleChange} />
             {!isVerified && (
               <button
                 type="button"
@@ -60,4 +60,4 @@ const Aadhar = () => {
   );
 };
 
-export default Aadhar;
+export default Pan;

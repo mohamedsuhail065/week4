@@ -9,12 +9,9 @@ const userSchema = new mongoose.Schema(
     aadharNumber: { type: String },
     gstno: { type: String },
     accno:{type:String},
+    pan:{type:String},
     isPhoneVerified: { type: Boolean },
     isEmailVerified: { type: Boolean },
-    isAadharVerified: { type: Boolean },
-    isPANVerified: { type: Boolean },
-    isBankVerified: { type: Boolean },
-    isGSTVerified: { type: Boolean },
     address: {
       pincode: { type: String },
       city: { type: String },
