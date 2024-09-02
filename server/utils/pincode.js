@@ -7,12 +7,13 @@ const pincode = async (request, response) => {
 
   const options = {
     method: "GET",
-    hostname: process.env.pin_HOST,
+    hostname: "india-pincode-with-latitude-and-longitude.p.rapidapi.com",
     port: null,
-    path: `/?pincode=${pin}`,
+    path: `/api/v1/pincode/${pin}`,
     headers: {
-      "x-rapidapi-key": process.env.pin_API,
-      "x-rapidapi-host": process.env.pin_HOST,
+      "x-rapidapi-key": "b1bc7f7eadmsh854f6f7e702c657p1ea4d5jsnd66d85a36251",
+      "x-rapidapi-host":
+        "india-pincode-with-latitude-and-longitude.p.rapidapi.com",
     },
   };
 
@@ -25,8 +26,8 @@ const pincode = async (request, response) => {
 
     res.on("end", function () {
       const body = Buffer.concat(chunks);
-      const parsed = JSON.parse(body);
-      response.json(parsed);
+      const data = JSON.parse(body.toString());
+      response.json(data);
     });
   });
 
@@ -34,10 +35,10 @@ const pincode = async (request, response) => {
 };
 
 const postDetails = async (req, res) => {
-  const { pin, email, city, district, state } = req.body;
+  const { pin, email, area, district, state } = req.body;
   await userModel.findOneAndUpdate(
     { email: email },
-    { address: { pincode: pin, city: city, district: district, state: state } },
+    { address: { pincode: pin, area: area, district: district, state: state } },
     { new: true }
   );
   res.status(200).json("Address updated successfully");

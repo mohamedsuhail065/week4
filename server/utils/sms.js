@@ -2,13 +2,13 @@ const userModel = require("../model/userModel");
 require('dotenv').config()
 
 const otpSms = (req, res) => {
-  const accountSid = process.env.twilio_SID;
-  const authToken = process.env.twilio_Token;;
+  const accountSid = "AC5a4324a50429db1254526e90e8419cca";
+  const authToken = "957ec0f002f4ea6f489da7c55d6a5298";
   const client = require("twilio")(accountSid, authToken);
   const { phone } = req.body;
 
   client.verify.v2
-    .services("VAcae70114ef2cb9de181436c6e278a05f")
+    .services("VA15543e157f61ee0619235553db48946b")
     .verifications.create({ to: `+91${phone}`, channel: "sms" })
     .then((verification) => {
       res.status(200).json({ msg: "Otp sent successfully", verification });
@@ -21,13 +21,13 @@ const otpSms = (req, res) => {
 
 const otpSmsVerify = async (req, res) => {
   const { phone, otp } = req.body;
-  const accountSid = process.env.twilio_SID;
-  const authToken = process.env.twilio_Token;
+  const accountSid = "AC5a4324a50429db1254526e90e8419cca";
+  const authToken = "957ec0f002f4ea6f489da7c55d6a5298";
   const client = require("twilio")(accountSid, authToken);
 
   try {
     const verificationCheck = await client.verify.v2
-      .services("VAcae70114ef2cb9de181436c6e278a05f")
+      .services("VA15543e157f61ee0619235553db48946b")
       .verificationChecks.create({ to: `+91${phone}`, code: otp });
 
     if (verificationCheck.status === "approved") {

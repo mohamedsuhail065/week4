@@ -16,7 +16,6 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     AXIOS.post("http://localhost:9000/user/login", data).then((res) => {
-      console.log(res.data.sts);
       if(res.data.sts===1){
 nav.push('/pages/Otp')
       }

@@ -8,6 +8,8 @@ import React, {
 } from "react";
 import "./Otp.css";
 import { useRouter } from "next/navigation";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const OtpVerification = () => {
   const nav = useRouter();
@@ -24,7 +26,7 @@ const OtpVerification = () => {
     if (isEmail && isPhone) {
       nav.push("/pages/aadhar");
     } else {
-      console.log("verify email and password");
+      toast.error("verify email and password");
     }
   };
 
@@ -40,7 +42,6 @@ const OtpVerification = () => {
           const { email, phone } = response.data;
           if (emailref.current) emailref.current.value = email;
           if (phoneref.current) phoneref.current.value = phone;
-          console.log(response);
         })
         .catch((err) => {});
     } else {
@@ -57,8 +58,6 @@ const OtpVerification = () => {
         ? { email: emailref.current?.value }
         : { phone: phoneref.current?.value };
 
-    console.log("Sending OTP to:", payload); // Debugging line
-
     const apiUrl =
       tabType === "email"
         ? "http://localhost:9000/otp/req-otp"
@@ -66,12 +65,12 @@ const OtpVerification = () => {
 
     AXIOS.post(apiUrl, payload)
       .then((response) => {
-        alert(response.data.msg);
+        toast.success(response.data.msg);
         setTab(tabType);
         setIsModalOpen(true);
       })
       .catch((error) => {
-        console.error("Error sending OTP:", error);
+        toast.error("Error sending OTP:", error);
       });
   };
 
@@ -89,8 +88,7 @@ const OtpVerification = () => {
 
     AXIOS.post(verifyUrl, payload)
       .then((response) => {
-        alert(response.data.msg);
-        console.log("OTP verified successfully");
+        toast.success("OTP verified successfully");
         handleCloseModal();
         if (tab === "email") {
           setIsEmail(true);
@@ -100,7 +98,7 @@ const OtpVerification = () => {
       })
       .catch((error) => {
         // Handle OTP verification error
-        console.error("Error verifying OTP:", error);
+        toast.error("Error verifying OTP:", error);
       });
   };
 
@@ -112,6 +110,7 @@ const OtpVerification = () => {
   return (
     <div className="register">
       <div className="container">
+        <ToastContainer/>
         <h1>Otp Verification</h1>
         <form>
           <label htmlFor="email">Email</label>
@@ -155,6 +154,7 @@ const OtpVerification = () => {
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
+            
             <h2>Verify {tab === "email" ? "Email" : "Phone"}</h2>
             <input
               type="text"

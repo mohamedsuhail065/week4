@@ -3,6 +3,8 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import "./Aadhar.css";
 import AXIOS from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Aadhar = () => {
   const nav = useRouter();
@@ -13,10 +15,14 @@ const Aadhar = () => {
   };
   const handleSendOtpClick = () => {
     AXIOS.post("http://localhost:9000/otp/aadhar", data).then((res) => {
-      console.log(res.data.sts);
       if (res.data.sts === 1) {
         setIsVerified(true);
+      } 
+      else{
+        toast.error('Invalid Aadhar')
       }
+    }).catch((error)=>{
+      toast.error(error)
     });
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -32,6 +38,7 @@ const Aadhar = () => {
   return (
     <div className="register">
       <div className="container">
+        <ToastContainer/>
         <h1>Aadhar Verification</h1>
         <form onSubmit={handleSubmit}>
           <label htmlFor="email">Aadhar Number</label>

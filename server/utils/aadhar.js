@@ -22,6 +22,9 @@ const aadhar = async (request, res) => {
           { new: true }
         );
       }
+      else{
+        res.json({msg:"invalid aadhar"})
+      }
     })
     .catch((err) => console.error(err));
 };

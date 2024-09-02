@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import "./Bank.css";
 import AXIOS from "axios";
 import { useRouter } from "next/navigation";
-
+import { ToastContainer,toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 const Bank = () => {
   const nav = useRouter();
   const [data, setData] = useState({});
@@ -25,7 +26,7 @@ const Bank = () => {
       if (res.data.sts === 1) {
         setIsVerify(true);
       } else {
-        alert("Invalid Bank details");
+        toast.error("Invalid Bank details");
       }
     });
   };
@@ -38,6 +39,7 @@ const Bank = () => {
   return (
     <div className="register">
       <div className="container">
+        <ToastContainer/>
         <h1>Bank Verification</h1>
         <form onSubmit={handleSubmit}>
           <label htmlFor="accno">Accout Number</label>

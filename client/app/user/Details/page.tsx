@@ -18,7 +18,7 @@ interface User {
   isEmailVerified?: boolean;
   address?: {
     pincode?: string;
-    city?: string;
+    area?: string;
     district?: string;
     state?: string;
   };
@@ -104,18 +104,18 @@ const UserDetails = () => {
       </div>
       <div className="detail">
         <strong>Address:</strong>
-        <div>
+        <div className="pin">
           <strong>Pincode:</strong>
           <span>{user.address?.pincode || "N/A"}</span>
         </div>
-        <div>
-          <strong>City:</strong> <span>{user.address?.city || "N/A"}</span>
+        <div className="pin">
+          <strong>Area:</strong> <span>{user.address?.area || "N/A"}</span>
         </div>
-        <div>
+        <div className="pin">
           <strong>District:</strong>
           <span>{user.address?.district || "N/A"}</span>
         </div>
-        <div>
+        <div className="pin">
           <strong>State:</strong> <span>{user.address?.state || "N/A"}</span>
         </div>
       </div>

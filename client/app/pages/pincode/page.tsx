@@ -3,13 +3,14 @@ import React, { useEffect, useState } from "react";
 import "./Pincode.css";
 import AXIOS from "axios";
 import { useRouter } from "next/navigation";
+import { ToastContainer,toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Pincode = () => {
   interface DetailsType {
-    office_name: string;
-    division_name: string;
-    district_name: string;
-    state_name: string;
+    area: string;
+    district: string;
+    state: string;
   }
 
   const nav = useRouter();
@@ -24,16 +25,16 @@ const Pincode = () => {
 
     // Find the selected office details
     const selectedDetails = pindetails.find(
-      (item) => item.office_name === selectedOfficeName
+      (item) => item.area === selectedOfficeName
     );
 
     // Update the data state with the selected office details
     if (selectedDetails) {
       setData((prevData) => ({
         ...prevData,
-        city: selectedDetails.division_name,
-        district: selectedDetails.district_name,
-        state: selectedDetails.state_name,
+        area: selectedDetails.area,
+        district: selectedDetails.district,
+        state: selectedDetails.state,
       }));
     }
   };
@@ -47,7 +48,6 @@ const Pincode = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setData({ ...data, [e.target.name]: e.target.value });
-    console.log(data);
   };
 
   const handleSendOtpClick = () => {
@@ -57,22 +57,23 @@ const Pincode = () => {
       if (res.data.length > 0) {
         setIsVerify(true);
       } else {
-        alert("Invalid Pincode");
+        toast.error("Invalid Pincode");
       }
     });
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent the form from submitting normally
+
     AXIOS.post("http://localhost:9000/otp/pindetails", data).then((res) => {
-      console.log("Submitted:", res.data);
     });
-    nav.push("/user/details");
+    nav.push("/user/Details");
   };
 
   return (
     <div className="register">
       <div className="container">
+        <ToastContainer/>
         <h1>Address</h1>
         <form onSubmit={handleSubmit}>
           <label htmlFor="pin">Pin Number</label>
@@ -96,18 +97,18 @@ const Pincode = () => {
                 <select onChange={onSelect}>
                   <option>Select your office</option>
                   {pindetails.map((item, index) => (
-                    <option key={index} value={item.office_name}>
-                      {item.office_name}
+                    <option key={index} value={item.area}>
+                      {item.area}
                     </option>
                   ))}
                 </select>
                 {selectedOffice && (
                   <div>
-                    <label htmlFor="city">City</label>
+                    <label htmlFor="city">Area</label>
                     <input
                       type="text"
-                      name="city"
-                      value={data.city || ""}
+                      name="area"
+                      value={data.area || ""}
                       disabled
                     />
                     <label htmlFor="district">District</label>

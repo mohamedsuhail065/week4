@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema(
     isEmailVerified: { type: Boolean },
     address: {
       pincode: { type: String },
-      city: { type: String },
+      area: { type: String },
       district: { type: String },
       state: { type: String },
     },

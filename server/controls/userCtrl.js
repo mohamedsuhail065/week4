@@ -14,7 +14,7 @@ const userRegister = async (req, res) => {
         dob: dob,
       });
 
-      res.json({ message: "Complete the verification processes" });
+      res.json({ message: "Continue the verification processes" });
     }
   } catch (error) {
     res
@@ -55,7 +55,6 @@ const userDetails = async (req, res) => {
   const emailid = req.headers["email"];
   const user = await userModel.findOne({ email: emailid });
   res.json(user)
-  console.log(user)
 };
 
 module.exports = { userRegister, userOtp, userLogin,userDetails };

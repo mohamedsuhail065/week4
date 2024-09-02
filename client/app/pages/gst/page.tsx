@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import "./Gst.css";
 import AXIOS from "axios";
 import { useRouter } from "next/navigation";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Gstin = () => {
   const nav = useRouter();
@@ -25,7 +27,7 @@ const Gstin = () => {
       if (res.data.sts === 1) {
         setIsVerify(true);
       } else {
-        alert("Invalid GSTIN");
+        toast.error("Invalid GSTIN");
       }
     });
   };
@@ -38,6 +40,7 @@ const Gstin = () => {
   return (
     <div className="register">
       <div className="container">
+        <ToastContainer/>
         <h1>Gstin Verification</h1>
         <form onSubmit={handleSubmit}>
           <label htmlFor="gst">Gstin Number</label>

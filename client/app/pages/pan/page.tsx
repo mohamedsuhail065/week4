@@ -3,6 +3,8 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import './Pan.css'
 import AXIOS from "axios";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Pan = () => {
   const nav = useRouter();
@@ -16,7 +18,11 @@ const Pan = () => {
       console.log(res.data);
       if (res.data.sts === 1) {
         setIsVerified(true);
+      }else{
+        toast.error("Invalid Pan",res.data.message);
       }
+    }).catch((error)=>{
+toast.error(error)
     });
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
